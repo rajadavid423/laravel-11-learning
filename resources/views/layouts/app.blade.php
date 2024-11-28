@@ -12,6 +12,10 @@
     <link rel="stylesheet" href="{{ asset('css/fontawesome.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('css/adminlte.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/2.1.8_css_dataTables.dataTables.min.css') }}">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
     @yield('styles')
 </head>
 <body class="hold-transition sidebar-mini">
@@ -85,10 +89,10 @@
     <footer class="main-footer">
         <!-- To the right -->
         <div class="float-right d-none d-sm-inline">
-            Anything you want
+{{--            Anything you want--}}
         </div>
         <!-- Default to the left -->
-        <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; 2014-2040 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
     </footer>
 </div>
 <!-- ./wrapper -->
@@ -98,6 +102,7 @@
 @vite('resources/js/app.js')
 <!-- AdminLTE App -->
 <script src="{{ asset('js/adminlte.min.js') }}" defer></script>
+<script src="{{ asset('js/2.1.8_js_dataTables.min.js') }}" defer></script>
 
 @yield('scripts')
 </body>

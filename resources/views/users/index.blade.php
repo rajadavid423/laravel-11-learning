@@ -18,36 +18,25 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-
-                    <div class="alert alert-info">
-                        Sample table page
-                    </div>
-
                     <div class="card">
-                        <div class="card-body p-0">
-
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($users as $user)
-                                    <tr>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->email }}</td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
+                        <div class="card-body p-1">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="yajra-data-table">
+                                    <thead>
+                                        <tr>
+    {{--                                        <th>S.No</th>--}}
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Created At</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <!-- /.card-body -->
 
-                        <div class="card-footer clearfix">
-                            {{ $users->links() }}
-                        </div>
                     </div>
 
                 </div>
@@ -56,4 +45,29 @@
         </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
+@endsection
+
+@section('scripts')
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(function () {
+            $('#yajra-data-table').DataTable({
+                "columnDefs": [
+                    {"className": "dt-center", "targets": "_all"}
+                ],
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: '{{ route("users.index") }}',
+                    type: 'GET'
+                },
+                columns: [
+                    // {data: 'DT_RowIndex'},
+                    {data: 'name'},
+                    {data: 'email'},
+                    {data: 'created_at'},
+                ]
+            });
+        });
+    </script>
 @endsection

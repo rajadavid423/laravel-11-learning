@@ -24,6 +24,15 @@
                 <a href="{{ route('users.index') }}" class="nav-link">
                     <i class="nav-icon fas fa-users"></i>
                     <p>
+                        {{ __('Users') }} - Yajra Table
+                    </p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="{{ route('user.list') }}" class="nav-link">
+                    <i class="nav-icon fas fa-users"></i>
+                    <p>
                         {{ __('Users') }}
                     </p>
                 </a>
