@@ -28,6 +28,9 @@
             <li class="nav-item">
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link"><i class="fas fa-clock"></i><span class="ml-1" id="live_timer">{{now()->format('Y-m-d H:i:s')}}</span></a>
+            </li>
         </ul>
 
         <!-- Right navbar links -->
@@ -102,6 +105,7 @@
 @vite('resources/js/app.js')
 <!-- AdminLTE App -->
 <script src="{{ asset('js/adminlte.min.js') }}" defer></script>
+<script src="{{ asset('js/live-timer.js') }}" defer></script>
 <script src="{{ asset('js/2.1.8_js_dataTables.min.js') }}" defer></script>
 
 @yield('scripts')
