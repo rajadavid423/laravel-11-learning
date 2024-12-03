@@ -19,9 +19,23 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12 col-md-3">
+                                    <label for="from_date" class="form-label fw-bold">From Date</label>
+                                    <input type="date" class="form-control" id="from_date">
+                                </div>
+                                <div class="col-12 col-md-3">
+                                    <label for="to_date" class="form-label fw-bold">To Date</label>
+                                    <input type="date" class="form-control" id="to_date">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
                         <div class="card-body p-1">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="yajra-data-table">
+                                <table class="table table-sm table-striped table-bordered" id="yajra-data-table">
                                     <thead>
                                         <tr>
     {{--                                        <th>S.No</th>--}}
@@ -59,7 +73,11 @@
                 serverSide: true,
                 ajax: {
                     url: '{{ route("users.index") }}',
-                    type: 'GET'
+                    type: 'GET',
+                    data: function(data) {
+                        data.from_date = $('#from_date').val(); // Get value of from_date input
+                        data.to_date = $('#to_date').val();     // Get value of to_date input
+                    }
                 },
                 columns: [
                     // {data: 'DT_RowIndex'},
@@ -68,6 +86,10 @@
                     {data: 'created_at'},
                 ]
             });
+        });
+
+        $(document).on('change', "#from_date, #to_date", function() {
+            $('#yajra-data-table').DataTable().ajax.reload(null, false);
         });
     </script>
 @endsection

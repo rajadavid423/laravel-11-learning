@@ -11,7 +11,12 @@ class UserController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $users = User::query();
+            $users = User::query()
+            ->when(!empty($request->from_date), function ($query) use ($request) {
+                $query->whereDate('created_at', '>=', $request->from_date);
+            })->when(!empty($request->to_date), function ($query) use ($request) {
+                $query->whereDate('created_at', '<=', $request->to_date);
+            });
 
             return DataTables::of($users)
                 ->addIndexColumn()
